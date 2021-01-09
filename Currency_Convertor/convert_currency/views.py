@@ -10,7 +10,7 @@ from django.http import Http404
 
 def index(request):
 
-	API ="1O3E0FBEA89BGC63"
+	API ="xxxxxxxxxxxxx"
 	BASE_URL=r"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE"
 
 	if request.method == 'POST':
