@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title> Currency Convertor</title>
+	<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<style>
+		.main_text{
+			font-family: 'Acme',sans-serif;
+			font-size: 35px;
+		}
+		.list_item{
+			color:black;
+			font-family:Comic Sans MS;
+			font-size: 18px;
+		}
+		.get_gaps{
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+            	<div class="title">
+            		<div class="dropdown">
+		               <div class="btn dropdown-toggle" data-toggle="dropdown"><span class="	glyphicon glyphicon-menu-hamburger" style="font-size: 25px"></span></div> 
+		               <ul class="dropdown-menu">
+			           <li class="list_item"><a href="{% url 'home' %}" ><span class="glyphicon glyphicon-home"> Home</span></a></li>
+			           <li class='list_item'><a href="{% url 'fullform' %}"><span class="glyphicon glyphicon-book"> Fullforms</span></a></li>
+			           <li class='list_item'><span class="glyphicon glyphicon-comment"> Feedback</span></li>
+		              </ul>
+	                </div>
+                   <span class="main_text">  Currency Convertor<span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+    	<div class="container">
+    	  	<form method="POST">
+    	  		<div class="form-group">
+    	  			<label for="usr">Name:</label>
+    	  			<input type="text" class="form-control" id="usr",name="name">
+    	  		</div>
+    	  		<div class="form-group">
+    	  			<label for="usr">Main Subject:</label>
+    	  			<input type="text" class="form-control" id="usr",name="name">
+    	  		</div>
+    	  		<div class="form-group">
+    	  			<label for="comment">Comments:</label>
+    	  			<textarea class="form-control" rows="7" id="comment"></textarea>
+    	  		</div>
+    	  		<button type="button" class="btn btn-primary btn-lg" onclick="alert('Thank you for your Feedback')">Submit</button>
+    	  	</form>
+    	</div>
+
+    </section>
+</body>
+</html>
