@@ -8,7 +8,7 @@ from .forms import HistoryForm
 
 def index(request):
 
-	API ="Z91BHR6HZNHV6E68"
+	API ="XXXXXXXXXXXXXXXXXXX"
 	BASE_URL=r"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE"
 
 	if request.method == 'POST':
