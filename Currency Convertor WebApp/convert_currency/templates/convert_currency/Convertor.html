@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title> Currency Convertor</title>
+	<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<style>
+		.main_text{
+			font-family: 'Acme',sans-serif;
+			font-size: 35px;
+		}
+		.list_item{
+			color:black;
+			font-family:Comic Sans MS;
+			font-size: 18px;
+		}
+		.get_gaps{
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+        .Button_Center{
+            justify-content:center;
+            margin-top: 10px;
+            margin-left: 30%;
+
+        }
+        .btn-color{
+            background-color:#87CEFA;
+            
+        }
+	</style>
+</head>
+<body>
+	<section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+            	<div class="title">
+            		<div class="dropdown">
+		               <div class="btn dropdown-toggle" data-toggle="dropdown"><span class="	glyphicon glyphicon-menu-hamburger" style="font-size: 25px"></span></div> 
+		               <ul class="dropdown-menu">
+			           <li class="list_item"><span class="glyphicon glyphicon-home"> Home</span></li>
+			           <li class='list_item'><a href="{% url 'fullform' %}"><span class="glyphicon glyphicon-book"> Fullforms</span></a></li>
+			           <li class='list_item'><a href="{% url 'feedback' %}"><span class="glyphicon glyphicon-comment"> Feedback</span></a></li>
+		              </ul>
+	                </div>
+                   <span class="main_text">  Currency Convertor<span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                        	<div class="control">
+                                <div class="button btn-primary is-info">
+                                    From Currency
+                                </div>
+                            </div>
+                            <div class="control is-expanded">
+                                
+                                {{ form.From }}
+                            </div>
+                            
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="get_gaps ">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                        	<div class="control">
+                                <div class="button btn-primary is-info">
+                                    To Currency
+                                </div>
+                            </div>
+                            <div class="control is-expanded">
+                               
+                                {{ form.To }}
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="container">
+                <div class="column is-offset-4 is-4">
+                	<h4>Add Amount :</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                
+                                {{ form.Amount }}
+
+                            </div>
+                        </div>
+                        <div class ="Button_Center">
+                        <button type="submit" class="btn btn-primary" >Get Result</button>
+
+                    </div>
+                    </form>
+                </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for result_conversion in history_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="https://i.postimg.cc/3wNrQvNP/OIP.jpg" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{result_conversion.result}}
+                                        </span>
+                                        <br>
+                                        <span class="subtitle">1 {{result_conversion.from}} = {{result_conversion.Conversion_values}} {{result_conversion.To}}</span>
+                                        <br>Searched for :{{result_conversion.amount}} {{result_conversion.from}}
+                                        <br> {{result_conversion.from}} - {{result_conversion.To}}
+                                        <br>{{result_conversion.Date}}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+</html>
