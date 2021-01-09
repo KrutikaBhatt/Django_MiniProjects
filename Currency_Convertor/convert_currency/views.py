@@ -3,34 +3,47 @@ from datetime import date
 from django.shortcuts import render
 from .models import Currency,History,Feedback
 from .forms import HistoryForm
+from django.http import Http404
+
 # Create your views here.
 
 
 def index(request):
 
-	API ="Z91BHR6HZNHV6E68"
+	API ="1O3E0FBEA89BGC63"
 	BASE_URL=r"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE"
 
 	if request.method == 'POST':
 		print("Post requested")
 		form = HistoryForm(request.POST)
-		if form.is_valid():
-			obj = form.save()
-			print(obj)
-		"""
-		main_url = BASE_URL + "&from_currency=" + From + "&to_currency=" + To + "&apikey=" + API
-		result = requests.get(main_url).json()
 
-		Conversion_factor = result['Realtime Currency Exchange Rate']["5. Exchange Rate"]
-		form.fields['Conversion_factor'] = Conversion_factor
-		form.fields['Result'] = round(float(Amount)*Conversion_factor,3)
-"""
+		if form.is_valid():
+
+			print("Form is validated")
+			obj = form.save()
+			To = form.cleaned_data['To']
+			From = form.cleaned_data['From']
+			Amount = float(form.cleaned_data['Amount'])
+
+			main_url = BASE_URL + "&from_currency=" + From + "&to_currency=" + To + "&apikey=" + API
+			print(To)
+			print(From)
+
+			result = requests.get(main_url).json()
+
+			print(result)
+			Conversion_factor = result["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+			obj.Conversion_factor = Conversion_factor
+			obj.Result = round(float(Amount)*Conversion_factor,3)
+			obj.save()
+
+		else:
+			raise Http404 
+			
+		
 	form = HistoryForm()
 
 	
-	#main_url = BASE_URL + "&from_currency=" + From + "&to_currency=" + To + "&apikey=" + API	
-
-	#result = requests.get(main_url).json()  # Recieve the JSON file 
 	history_data = []
 	"""
 	The result is viewed as

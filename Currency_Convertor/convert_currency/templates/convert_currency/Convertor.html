@@ -59,7 +59,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
-                    <form method="POST">
+                    <form acion="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                         <div class="field has-addons">
                         	<div class="control">
@@ -68,7 +68,6 @@
                                 </div>
                             </div>
                             <div class="control is-expanded">
-                                
                                 {{ form.From }}
                             </div>
                             
@@ -83,7 +82,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
-                    <form method="POST">
+                    <form action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                         <div class="field has-addons">
                         	<div class="control">
@@ -105,18 +104,16 @@
         <div class="container">
                 <div class="column is-offset-4 is-4">
                 	<h4>Add Amount :</h4>
-                    <form method="POST">
+                    <form action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                         <div class="field has-addons">
                             <div class="control is-expanded">
-                                
-                                {{ form.Amount }}
+                                 {{ form.Amount }}
 
                             </div>
                         </div>
                         <div class ="Button_Center">
                         <button type="submit" class="btn btn-primary" >Get Result</button>
-
                     </div>
                     </form>
                 </div>

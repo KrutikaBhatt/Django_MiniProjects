@@ -12,11 +12,11 @@ class Currency(models.Model):
 
 #History of all the conversions did
 class History(models.Model):
-	To = models.CharField(max_length =20)
-	From = models.CharField(max_length =20)
-	Amount = models.CharField(max_length =5)
-	Result = models.CharField(max_length =10)
-	Conversion_factor = models.CharField(max_length = 10)
+	To = models.CharField(max_length =20,default ="INR",blank = True)
+	From = models.CharField(max_length =20 ,default = "USD",blank=True)
+	Amount = models.FloatField(blank = True,default = 1.0,) 
+	Result = models.FloatField(blank =True,null =True) 
+	Conversion_factor = models.FloatField(blank = True,null=True) 
 
 	Date = models.DateField(auto_now_add=True)
 
